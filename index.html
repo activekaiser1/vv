@@ -1,0 +1,857 @@
+<!DOCTYPE html>
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+<html>
+<body>
+    <input type="number" id="bpm" value="140" min="0" max="280" style="z-index:1;position:absolute;width:22px;height:22px;touch-action: manipulation;font-size:10px;">
+ 
+   <button onclick="steep()" style="position:absolute;width:100px;height:100px;left:25px;touch-action: manipulation;">stepedit</button> 
+    <button onclick="keey()" style="z-index:10;position:absolute;width:100px;height:100px;left:125px;touch-action: manipulation;">keyboard</button>
+    <button onclick="doouble()" style="position:absolute;width:100px;height:100px;left:225px;touch-action: manipulation;">double</button>
+      
+
+<canvas id="myCanvas"></canvas>
+<canvas id="myCanva""></canvas>
+<style>
+     * {
+      touch-action: manipulation;
+  }                  
+                     * { margin: 0; padding: 0;}
+
+body, html { width:100%;    touch-action: manipulation; }
+
+
+                     
+#myCanvas {
+    width:100%;
+                         touch-action: manipulation;
+}
+      #myCanva {
+    width:100%;
+                         touch-action: manipulation;
+}
+                     </style>
+
+<script>
+var coon = 0;    
+var buel = 0;                     
+var fell = ["white","white","white","white","white","white","white","white","white","white","white","white","white","white"];                       
+var feel = ["white","white","white","white"];
+
+var stepedit = 0;
+var gud = 0;
+var duuble = 4;
+var nom = 0;
+var counter = 0;
+var counterr = 0;
+                                           
+var countra = 0;
+var counttra = 0;
+var countttra = 0;
+ var yulugy = 0;  
+var pz = -1;
+var xped = 5;                                        
+var c = document.getElementById("myCanvas");
+var ctx = c.getContext("2d");
+c.width = window.innerWidth;
+c.height = window.innerWidth;
+c.style.position = "absolute";
+c.style.top = window.innerHeight/2 - window.innerWidth/2 + "px";
+var cc = document.getElementById("myCanva");
+var ctxx = cc.getContext("2d");
+cc.width = window.innerWidth;
+cc.height = window.innerWidth;
+cc.style.position = "absolute";
+cc.style.top = window.innerHeight/2 - window.innerWidth/2 + "px";
+
+ var fileInput = document.getElementById('audio-file');
+var audioCtx = new (AudioContext || webkitAudioContext)();
+
+var compress_btn = document.getElementById('compress_btn');
+var bufferLike = [];
+var source = [];
+var gainNode= [];
+
+function yuluz(amun){
+
+  // check for file
+  if(fileInput.files[0] == undefined) {
+
+    // Stop the process and tell user they need to upload a file.
+    return false;
+  }
+
+  var reader1 = new FileReader();
+	reader1.onload = function(ev) {
+	    
+	    // Decode audio
+	    audioCtx.decodeAudioData(ev.target.result).then(function(buffer) {
+
+	    var soundSource = audioCtx.createBufferSource();
+
+		soundSource.buffer = buffer;
+		
+	    // Create Compressor Node
+		compressor = audioCtx.createDynamicsCompressor();
+
+		compressor.threshold.setValueAtTime(-20, audioCtx.currentTime);
+		compressor.knee.setValueAtTime(-30, audioCtx.currentTime);
+		compressor.ratio.setValueAtTime(5, audioCtx.currentTime);
+		compressor.attack.setValueAtTime(.05, audioCtx.currentTime);
+		compressor.release.setValueAtTime(.25, audioCtx.currentTime);
+
+		soundSource.connect(compressor);
+
+		compressor.connect(audioCtx.destination);
+		soundSource.start(0);
+soundSource.detune.value = amun;
+	    });
+	  };
+	  reader1.readAsArrayBuffer(fileInput.files[0]);
+
+};
+
+                                                          
+                                                                
+function steep() {
+countra++;
+stepedit = 10;
+if(countra==2){stepedit=0;countra=0;};     
+};
+                                                                
+                                                                
+
+function keey() {
+counttra++;
+gud = 10;
+xped = 10;
+if(counttra==2){gud=0;counttra=0;xped=5};                                                           
+                                                            
+};   
+                                                                
+function doouble() {
+countttra++;                                                                
+                                                            
+};                                                                   
+                                                                
+         
+                                                                
+
+                                                               
+                                                                
+ document.ontouchmove = function(event){
+    event.preventDefault();
+ };
+
+
+init();
+
+function init() {
+    if (window.DeviceOrientationEvent) {
+        
+        window.addEventListener('deviceorientation', function (eventData) {
+            var tiltLR = eventData.alpha-270;
+            var tiltFB = eventData.beta;
+            var dir = eventData.alpha
+            deviceOrientationHandler(tiltLR, tiltFB, dir);
+        }, false);
+    } 
+}
+        
+        
+        
+    
+        setInterval(function(){ 
+                                                               
+counter++; 
+coon++;
+  buel++;                                                             
+ 
+                  
+                                                               
+                                                               
+   if(buel==3){buel=0;};                                                            
+                                                               
+ctx.clearRect(0,0,window.innerWidth,window.innerWidth);
+
+ctx.beginPath();
+ctx.rect(1-counter/2, 1-counter/2, (window.innerWidth)-1+counter, (window.innerWidth)-1+counter);
+ctx.fillStyle = feel[0];
+ctx.fill();
+ctx.stroke();
+                                                               
+
+ctx.beginPath();
+ctx.rect(1+window.innerWidth/6-counter/2,1+window.innerWidth/6-counter/2,window.innerWidth-window.innerWidth/3+counter,window.innerWidth-window.innerWidth/3+counter);
+ctx.fillStyle = feel[1];
+ctx.fill();
+ctx.stroke();
+
+                                                                
+ctx.beginPath();                                                                
+ctx.rect(1+window.innerWidth/3-counter/2,1+window.innerWidth/3-counter/2,window.innerWidth-window.innerWidth/1.5+counter,window.innerWidth-window.innerWidth/1.5+counter);
+ctx.fillStyle = feel[2];
+ctx.fill();
+ctx.stroke();
+
+
+ctx.beginPath();
+ctx.rect(window.innerWidth/2-counter/2, window.innerWidth/2-counter/2, counter, counter);
+ctx.fillStyle = feel[3];
+ctx.fill();
+ctx.stroke();
+
+
+                                                                
+ if(gud==10) {      
+ //y                                                             
+  var i;
+for (i = 0; i < 12; i++) {
+ctx.fillStyle=fell[i];
+ctx.beginPath();
+ctx.moveTo(window.innerWidth/2, window.innerWidth/2);
+ctx.lineTo(((1-counter/2)+((window.innerWidth+counter)/12)*i), (window.innerWidth)+counter/2);
+ctx.lineTo(((1-counter/2)+((window.innerWidth+counter)/12)*(i+1)), (window.innerWidth)+counter/2);
+ctx.closePath();
+ctx.stroke();
+ctx.fill();
+};
+
+var i;
+for (i = 12; i < 24; i++) {
+ctx.fillStyle=fell[i];
+ctx.beginPath();
+ctx.moveTo(window.innerWidth/2, window.innerWidth/2);
+ctx.lineTo(((1+window.innerWidth/6-counter/2)+((window.innerWidth-window.innerWidth/3+counter)/12)*(i-12)), (window.innerWidth-window.innerWidth/6)+counter/2);
+ctx.lineTo(((1+window.innerWidth/6-counter/2)+((window.innerWidth-window.innerWidth/3+counter)/12)*((i-12)+1)), (window.innerWidth-window.innerWidth/6)+counter/2);
+ctx.closePath();
+ctx.stroke();
+ctx.fill();
+};
+
+var i;
+for (i = 24; i < 36; i++) {
+ctx.fillStyle=fell[i];
+ctx.beginPath();
+ctx.moveTo(window.innerWidth/2, window.innerWidth/2);
+ctx.lineTo(((1+window.innerWidth/3-counter/2)+((window.innerWidth-window.innerWidth/1.5+counter)/12)*(i-24)), (window.innerWidth-window.innerWidth/3)+counter/2);
+ctx.lineTo(((1+window.innerWidth/3-counter/2)+((window.innerWidth-window.innerWidth/1.5+counter)/12)*((i-24)+1)), (window.innerWidth-window.innerWidth/3)+counter/2);
+ctx.closePath();
+ctx.stroke();
+ctx.fill();
+};
+
+var i;
+for (i = 36; i < 48; i++) {
+ctx.fillStyle=fell[i];
+ctx.beginPath();
+ctx.moveTo(window.innerWidth/2, window.innerWidth/2);
+ctx.lineTo(((1+window.innerWidth/2-counter/2)+((counter)/12)*(i-36)), window.innerWidth/2+counter/2);
+ctx.lineTo(((1+window.innerWidth/2-counter/2)+((counter)/12)*((i-36)+1)), window.innerWidth/2+counter/2);
+ctx.closePath();
+ctx.stroke();
+ctx.fill();
+};
+
+
+                     
+                     
+};
+
+
+                                                              
+                                                                
+                                                                
+                                                                
+                                                                
+                                                                
+                                                                
+if(counter>(window.innerWidth/3).toFixed(0)){
+            counter=0;                                                          
+counterr++;      
+
+                                                           
+feel.unshift("white");  
+
+      
+                                                           
+
+                    
+fell.unshift("white"); fell.unshift("white"); fell.unshift("white"); fell.unshift("white"); fell.unshift("white"); fell.unshift("white"); fell.unshift("white"); fell.unshift("white"); fell.unshift("white"); fell.unshift("white"); fell.unshift("white"); fell.unshift("white");                    
+            
+                                                         
+                                                                      
+                                                                           if(counterr==4){
+                                                                        
+                                                                        counterr=0;
+                                                                           };
+                                                                           
+                                                   
+                                                                        
+         //addthe                                                                                        
+if(fell[36+12] == nom){fell[0]=fell[36+12];
+
+if(nom=="red"){source[0].detune.value = 0;};
+if(nom=="blue"){source[0].detune.value = 0;};
+if(nom=="green"){source[0].detune.value = 0;};
+if(nom=="grey"){source[0].detune.value = 0;};              
+
+               
+}; 
+if(fell[37+12] == nom){fell[1]=fell[37+12];
+              
+if(nom=="red"){source[0].detune.value = 100;};
+if(nom=="blue"){source[0].detune.value = 100;};
+if(nom=="green"){source[0].detune.value = 100;};
+if(nom=="grey"){source[0].detune.value = 100;}; 
+              
+}; 
+              
+if(fell[38+12] == nom){fell[2]=fell[38+12];
+if(nom=="red"){source[0].detune.value = 200;};
+if(nom=="blue"){source[0].detune.value = 200;};
+if(nom=="green"){source[0].detune.value = 200;};
+if(nom=="grey"){source[0].detune.value = 200;}; 
+              
+              
+}; 
+if(fell[39+12] == nom){fell[3]=fell[39+12];
+if(nom=="red"){source[0].detune.value = 300;};
+if(nom=="blue"){source[0].detune.value = 300;};
+if(nom=="green"){source[0].detune.value = 300;};
+if(nom=="grey"){source[0].detune.value = 300;}; 
+}; 
+if(fell[40+12] == nom){fell[4]=fell[40+12];
+if(nom=="red"){source[0].detune.value = 400;};
+if(nom=="blue"){source[0].detune.value = 400;};
+if(nom=="green"){source[0].detune.value = 400;};
+if(nom=="grey"){source[0].detune.value = 400;}; 
+}; 
+if(fell[41+12] == nom){fell[5]=fell[41+12];
+if(nom=="red"){source[0].detune.value = 500;};
+if(nom=="blue"){source[0].detune.value = 500;};
+if(nom=="green"){source[0].detune.value = 500;};
+if(nom=="grey"){source[0].detune.value = 500;}; 
+};  
+if(fell[42+12] == nom){fell[6]=fell[42+12];
+if(nom=="red"){source[0].detune.value = 600;};
+if(nom=="blue"){source[0].detune.value = 600;};
+if(nom=="green"){source[0].detune.value = 600;};
+if(nom=="grey"){source[0].detune.value = 600;}; 
+};  
+if(fell[43+12] == nom){fell[7]=fell[43+12];
+if(nom=="red"){source[0].detune.value = 700;};
+if(nom=="blue"){source[0].detune.value = 700;};
+if(nom=="green"){source[0].detune.value = 700;};
+if(nom=="grey"){source[0].detune.value = 700;}; 
+};  
+if(fell[44+12] == nom){fell[8]=fell[44+12];
+if(nom=="red"){source[0].detune.value = 800;};
+if(nom=="blue"){source[0].detune.value = 800;};
+if(nom=="green"){source[0].detune.value = 800;};
+if(nom=="grey"){source[0].detune.value = 800;}; 
+};  
+if(fell[45+12] == nom){fell[9]=fell[45+12];
+if(nom=="red"){source[0].detune.value = 900;};
+if(nom=="blue"){source[0].detune.value = 900;};
+if(nom=="green"){source[0].detune.value = 900;};
+if(nom=="grey"){source[0].detune.value = 900;}; 
+};  
+if(fell[46+12] == nom){fell[10]=fell[46+12];
+if(nom=="red"){source[0].detune.value = 1000;};
+if(nom=="blue"){source[0].detune.value = 1000;};
+if(nom=="green"){source[0].detune.value = 1000;};
+if(nom=="grey"){source[0].detune.value = 1000;}; 
+};  
+if(fell[47+12] == nom){fell[11]=fell[47+12];
+if(nom=="red"){source[0].detune.value = 1200;};
+if(nom=="blue"){source[0].detune.value = 1200;};
+if(nom=="green"){source[0].detune.value = 1200;};
+if(nom=="grey"){source[0].detune.value = 1200;}; 
+};  
+                                                                                   
+                                                                                    
+ //addthe                                                  
+                                                                       
+                                                                                 
+                                                                                    if(feel[duuble]=="red" || feel[duuble]=="blue" || feel[duuble]=="green" || feel[duuble]=="grey" || feel[duuble]=="white")
+                                                                                    { 
+                                                                                    feel[0]=feel[duuble];
+                                                                                   
+                                                                                    
+                                                      if(feel[4]=="red"){
+                    yuluz(0);
+                                                   };  
+                                                   
+                                                       if(feel[4]=="blue"){
+                     yuluz(0);
+                                                    };  
+                                                   
+                                                       if(feel[4]=="green"){
+                      yuluz(0);
+                                                   };  
+                                                   
+                                                       if(feel[4]=="grey"){
+                     yuluz(0);
+                                                   };  
+                                                                                    
+                                                                                    };  
+                                                                                    
+                                                            };
+                                                                
+                                                            
+                                                              
+                                                            
+                                                            
+                                                            
+                                                            
+                                                                
+
+}, (60000/140)/(window.innerWidth/2)  );
+        
+        
+        
+        
+
+   function deviceOrientationHandler(tiltLR, tiltFB, dir) {
+
+                                                                        
+                                                                         
+                                                                         
+        ctxx.clearRect(0,0,window.innerWidth,window.innerHeight);
+        ctxx.fillStyle = "black";
+        ctxx.fillRect(window.innerWidth/2-5-tiltLR*20, window.innerWidth/2-5-tiltFB*20, 10, 10);
+                                
+         if(stepedit==10){  
+               if(gud==0){                 
+          
+            if(window.innerWidth/2-5-tiltLR*20<0){
+              if(window.innerWidth/2-5-tiltFB*20>0){                   
+                   if(window.innerWidth/2-5-tiltFB*20<window.innerWidth){               
+yuluz(0); 
+feel[0]="red";
+nom = feel[0];
+ 
+//gainNode[0].gain.value = (Math.abs(window.innerWidth/2-5-tiltLR*20))/100;
+                        
+};};};
+          
+            if(window.innerWidth/2-5-tiltFB*20<0){
+              if(window.innerWidth/2-5-tiltLR*20>0){
+              if(window.innerWidth/2-5-tiltLR*20<window.innerWidth){
+yuluz(0);
+feel[0]="blue";
+nom = feel[0];
+
+//gainNode[1].gain.value = (Math.abs(window.innerWidth/2-5-tiltFB*20))/100;               
+              
+};};};
+                                
+         
+            if(window.innerWidth/2-5-tiltLR*20>window.innerWidth){
+               if(window.innerWidth/2-5-tiltFB*20>0){                   
+                   if(window.innerWidth/2-5-tiltFB*20<window.innerWidth){    
+yuluz(0);         
+feel[0]="green";
+nom = feel[0];
+
+//gainNode[2].gain.value = (window.innerWidth/2-5-tiltLR*20-window.innerWidth)/100;                  
+               
+};};};
+            
+            if(window.innerWidth/2-5-tiltFB*20>window.innerWidth){
+                 if(window.innerWidth/2-5-tiltLR*20>0){
+              if(window.innerWidth/2-5-tiltLR*20<window.innerWidth){
+yuluz(0);
+feel[0]="grey";  
+nom = feel[0];
+
+//gainNode[3].gain.value = (window.innerWidth/2-5-tiltFB*20-window.innerWidth)/100;              
+
+};};};
+             
+              
+              
+              
+              
+              
+              
+              
+              
+              
+              
+        if(window.innerWidth/2-5-tiltFB*20<window.innerWidth){
+  if(window.innerWidth/2-5-tiltFB*20>0){
+           if(window.innerWidth/2-5-tiltLR*20<window.innerWidth){
+  if(window.innerWidth/2-5-tiltLR*20>0){          
+              
+feel[0]="white";                 
+};};};};         
+              
+              
+              
+              
+              
+              
+     };};       
+              
+              
+              
+              
+       if(gud==10){
+              
+
+    
+if(window.innerWidth/2-5-tiltLR*20<window.innerWidth-window.innerWidth){
+              
+  if(window.innerWidth/2-5-tiltFB*20>window.innerWidth-window.innerWidth){
+              
+      
+                    if(window.innerWidth/2-5-tiltFB*20<window.innerWidth){
+
+ 
+              
+              
+fell[0] = "white";
+fell[1] = "white";
+fell[2] = "white";
+fell[3] = "white";
+fell[4] = "white";
+fell[5] = "white";
+fell[6] = "white";
+fell[7] = "white";
+fell[8] = "white";
+fell[9] = "white";
+fell[10] = "white"; 
+fell[11] = "white";                  
+};};};              
+              
+                     if(window.innerWidth/2-5-tiltLR*20>((window.innerWidth)/12)*0&&window.innerWidth/2-5-tiltLR*20<((window.innerWidth)/12)*1){
+                  
+   if(window.innerWidth/2-5-tiltFB*20>window.innerWidth-window.innerWidth){
+              
+   
+                  
+                        if(window.innerWidth/2-5-tiltFB*20<window.innerWidth){
+
+            
+                  
+fell[0] = nom;
+fell[1] = "white";
+fell[2] = "white";
+fell[3] = "white";
+fell[4] = "white";
+fell[5] = "white";
+fell[6] = "white";
+fell[7] = "white";
+fell[8] = "white";
+fell[9] = "white";
+fell[10] = "white";
+fell[11] = "white";
+               
+              };};};
+                 
+             if(window.innerWidth/2-5-tiltLR*20>((window.innerWidth)/12)*1&&window.innerWidth/2-5-tiltLR*20<((window.innerWidth)/12)*2){
+                  
+         if(window.innerWidth/2-5-tiltFB*20>window.innerWidth-window.innerWidth){
+              
+
+                  
+                        if(window.innerWidth/2-5-tiltFB*20<window.innerWidth){
+
+
+                  
+fell[0] = "white";                
+fell[1] = nom;
+fell[2] = "white";
+fell[3] = "white";
+fell[4] = "white";
+fell[5] = "white";
+fell[6] = "white";
+fell[7] = "white";
+fell[8] = "white";
+fell[9] = "white";
+fell[10] = "white";
+fell[11] = "white";
+                    
+              };};};
+              
+                  if(window.innerWidth/2-5-tiltLR*20>((window.innerWidth)/12)*2&&window.innerWidth/2-5-tiltLR*20<((window.innerWidth)/12)*3){
+                  
+                  if(window.innerWidth/2-5-tiltFB*20>window.innerWidth-window.innerWidth){
+              
+   
+                        if(window.innerWidth/2-5-tiltFB*20<window.innerWidth){
+
+                  
+fell[0] = "white";
+fell[1] = "white";                
+fell[2] = nom;
+fell[3] = "white";
+fell[4] = "white";
+fell[5] = "white";
+fell[6] = "white";
+fell[7] = "white";
+fell[8] = "white";
+fell[9] = "white";
+fell[10] = "white";
+fell[11] = "white";
+                 
+              };};};
+                 
+                  if(window.innerWidth/2-5-tiltLR*20>((window.innerWidth)/12)*3&&window.innerWidth/2-5-tiltLR*20<((window.innerWidth)/12)*4){
+                  
+                  if(window.innerWidth/2-5-tiltFB*20>window.innerWidth-window.innerWidth){
+              
+
+                  
+                        if(window.innerWidth/2-5-tiltFB*20<window.innerWidth){
+
+
+                  
+fell[0] = "white";
+fell[1] = "white";
+fell[2] = "white";                
+fell[3] = nom;
+fell[4] = "white";
+fell[5] = "white";
+fell[6] = "white";
+fell[7] = "white";
+fell[8] = "white";
+fell[9] = "white";
+fell[10] = "white";
+fell[11] = "white";
+                     
+              };};};
+                 
+                  if(window.innerWidth/2-5-tiltLR*20>((window.innerWidth)/12)*4&&window.innerWidth/2-5-tiltLR*20<((window.innerWidth)/12)*5){
+                  
+                 if(window.innerWidth/2-5-tiltFB*20>window.innerWidth-window.innerWidth){
+              
+
+                  
+                        if(window.innerWidth/2-5-tiltFB*20<window.innerWidth){
+
+
+                  
+fell[0] = "white";
+fell[1] = "white";
+fell[2] = "white";
+fell[3] = "white";                 
+fell[4] = nom;
+fell[5] = "white";
+fell[6] = "white";
+fell[7] = "white";
+fell[8] = "white";
+fell[9] = "white";
+fell[10] = "white";
+fell[11] = "white";
+                  
+              };};};
+                 
+                  if(window.innerWidth/2-5-tiltLR*20>((window.innerWidth)/12)*5&&window.innerWidth/2-5-tiltLR*20<((window.innerWidth)/12)*6){
+                  
+                 if(window.innerWidth/2-5-tiltFB*20>window.innerWidth-window.innerWidth){
+              
+
+                  
+                        if(window.innerWidth/2-5-tiltFB*20<window.innerWidth){
+
+
+                  
+fell[0] = "white";
+fell[1] = "white";
+fell[2] = "white";
+fell[3] = "white";
+fell[4] = "white";                 
+fell[5] = nom;
+fell[6] = "white";
+fell[7] = "white";
+fell[8] = "white";
+fell[9] = "white";
+fell[10] = "white";
+fell[11] = "white";
+                   
+              };};};
+                 
+                  if(window.innerWidth/2-5-tiltLR*20>((window.innerWidth)/12)*6&&window.innerWidth/2-5-tiltLR*20<((window.innerWidth)/12)*7){
+                  
+               if(window.innerWidth/2-5-tiltFB*20>window.innerWidth-window.innerWidth){
+              
+
+                  
+                        if(window.innerWidth/2-5-tiltFB*20<window.innerWidth){
+
+
+                  
+fell[0] = "white";
+fell[1] = "white";
+fell[2] = "white";
+fell[3] = "white";
+fell[4] = "white";
+fell[5] = "white";                 
+fell[6] = nom;
+fell[7] = "white";
+fell[8] = "white";
+fell[9] = "white";
+fell[10] = "white";
+fell[11] = "white";
+                    
+              };};};
+                 
+                  if(window.innerWidth/2-5-tiltLR*20>((window.innerWidth)/12)*7&&window.innerWidth/2-5-tiltLR*20<((window.innerWidth)/12)*8){
+                  
+                  if(window.innerWidth/2-5-tiltFB*20>window.innerWidth-window.innerWidth){
+              
+
+                  
+                        if(window.innerWidth/2-5-tiltFB*20<window.innerWidth){
+
+
+                  
+                  
+fell[0] = "white";
+fell[1] = "white";
+fell[2] = "white";
+fell[3] = "white";
+fell[4] = "white";
+fell[5] = "white";
+fell[6] = "white";                
+fell[7] = nom;
+fell[8] = "white";
+fell[9] = "white";
+fell[10] = "white";
+fell[11] = "white";
+                     
+              };};};
+                 
+                  if(window.innerWidth/2-5-tiltLR*20>((window.innerWidth)/12)*8&&window.innerWidth/2-5-tiltLR*20<((window.innerWidth)/12)*9){
+                  
+                  if(window.innerWidth/2-5-tiltFB*20>window.innerWidth-window.innerWidth){
+              
+
+                  
+                        if(window.innerWidth/2-5-tiltFB*20<window.innerWidth){
+
+
+                  
+fell[0] = "white";
+fell[1] = "white";
+fell[2] = "white";
+fell[3] = "white";
+fell[4] = "white";
+fell[5] = "white";
+fell[6] = "white";
+fell[7] = "white";                  
+fell[8] = nom;
+fell[9] = "white";
+fell[10] = "white";
+fell[11] = "white";
+                    
+              };};};
+                 
+                  if(window.innerWidth/2-5-tiltLR*20>((window.innerWidth)/12)*9&&window.innerWidth/2-5-tiltLR*20<((window.innerWidth)/12)*10){
+                  
+           if(window.innerWidth/2-5-tiltFB*20>window.innerWidth-window.innerWidth){
+              
+   
+                  
+                        if(window.innerWidth/2-5-tiltFB*20<window.innerWidth){
+
+
+                  
+fell[0] = "white";
+fell[1] = "white";
+fell[2] = "white";
+fell[3] = "white";
+fell[4] = "white";
+fell[5] = "white";
+fell[6] = "white";
+fell[7] = "white";
+fell[8] = "white";
+fell[9] = nom;
+fell[10] = "white";
+fell[11] = "white";                  
+              };};};
+                 
+                  if(window.innerWidth/2-5-tiltLR*20>((window.innerWidth)/12)*10&&window.innerWidth/2-5-tiltLR*20<((window.innerWidth)/12)*11){
+                  
+                  if(window.innerWidth/2-5-tiltFB*20>window.innerWidth-window.innerWidth){
+              
+
+                  
+                        if(window.innerWidth/2-5-tiltFB*20<window.innerWidth){
+
+
+                  
+fell[0] = "white";
+fell[1] = "white";
+fell[2] = "white";
+fell[3] = "white";
+fell[4] = "white";
+fell[5] = "white";
+fell[6] = "white";
+fell[7] = "white";
+fell[8] = "white";
+fell[9] = "white";                  
+fell[10] = nom;
+fell[11] = "white";
+                      
+              };};};
+                 
+                  if(window.innerWidth/2-5-tiltLR*20>((window.innerWidth)/12)*11&&window.innerWidth/2-5-tiltLR*20<((window.innerWidth)/12)*12){
+                  
+                  if(window.innerWidth/2-5-tiltFB*20>window.innerWidth-window.innerWidth){
+              
+               
+                        if(window.innerWidth/2-5-tiltFB*20<window.innerWidth){
+
+               
+fell[0] = "white";
+fell[1] = "white";
+fell[2] = "white";
+fell[3] = "white";
+fell[4] = "white";
+fell[5] = "white";
+fell[6] = "white";
+fell[7] = "white";
+fell[8] = "white";
+fell[9] = "white";
+fell[10] = "white";                  
+fell[11] = nom;
+                    
+              };};};
+                  
+if(window.innerWidth/2-5-tiltLR*20>window.innerWidth){
+                  
+        if(window.innerWidth/2-5-tiltFB*20>window.innerWidth-window.innerWidth){
+              
+              
+                  if(window.innerWidth/2-5-tiltFB*20<window.innerWidth){
+
+            
+fell[0] = "white";
+fell[1] = "white";
+fell[2] = "white";
+fell[3] = "white";
+fell[4] = "white";
+fell[5] = "white";
+fell[6] = "white";
+fell[7] = "white";
+fell[8] = "white";
+fell[9] = "white";
+fell[10] = "white";                  
+fell[11] = "white";
+};};};  
+                  
+                   
+              
+              };                         
+                                
+                                
+    }
+
+         
+
+ </script>
+ </body>
+</html>
