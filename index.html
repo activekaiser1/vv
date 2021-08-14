@@ -86,7 +86,7 @@ function yuluz(amun){
 
   var reader1 = new FileReader();
 	reader1.onload = function(ev) {
-	    
+	    alert(fileInput.file.name);
 	    // Decode audio
 	    audioCtx.decodeAudioData(ev.target.result).then(function(buffer) {
 
