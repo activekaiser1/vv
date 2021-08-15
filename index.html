@@ -2,12 +2,12 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
 <html>
 
-  <div id="moov" style="position:absolute;left:0px;top:500px;touch-action: manipulation;" onmousemove="showCoords(event)">
+  <div id="moov" style="position:absolute;width: 350px;height: 100px;overflow-x: auto;left:0px;top:500px;touch-action: manipulation;" onmousemove="showCoords(event)">
        <input type="file" id="audio-file" accept="audio/*"  style="position:absolute;width:100px;height:100px;left:15px;touch-action: manipulation;">
 	 <input type="file" id="audio-file" accept="audio/*"  style="position:absolute;width:100px;height:100px;left:96px;touch-action: manipulation;">
 	 <input type="file" id="audio-file" accept="audio/*"  style="position:absolute;width:100px;height:100px;left:177px;touch-action: manipulation;">
  <input type="file" id="audio-file" accept="audio/*"  style="position:absolute;width:100px;height:100px;left:258px;touch-action: manipulation;">
-	  <div style="position:absolute;width:15px;height:100px;left:340px;touch-action: manipulation;"> </div>
+	  <div style="position:absolute;width:15px;height:100px;left:340px;touch-action: manipulation;background:red;"> </div>
  <p id="first" style="position:absolute;top:520px;width:25px;height:100px;left:15px;touch-action: manipulation;"></p>
 	 <p id="second" style="position:absolute;top:520px;width:25px;height:100px;left:96px;touch-action: manipulation;"></p>
 	 <p id="third" style="position:absolute;top:520px;width:25px;height:100px;left:177px;touch-action: manipulation;"></p>
@@ -58,12 +58,7 @@ body, html { width:100%;    touch-action: manipulation; }
                          touch-action: manipulation;
 }
 		     
-div {
-  background: white;
-  width: 350px;
-  height: 100px;
-  overflow-x: auto;
-}		     
+		     
 		     
                      </style>
 
