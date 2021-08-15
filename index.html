@@ -1,11 +1,7 @@
 <!DOCTYPE html>
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
 <html>
-<body>
-    <input type="number" id="bpm" value="140" min="0" max="280" style="z-index:1;position:absolute;width:22px;height:22px;touch-action: manipulation;font-size:10px;">
- 
-   <button onclick="steep()" style="position:absolute;width:100px;height:100px;left:25px;touch-action: manipulation;">stepedit</button> 
-    <button onclick="keey()" style="z-index:10;position:absolute;width:100px;height:100px;left:125px;touch-action: manipulation;">keyboard</button>
+
   <div id="moov" style="position:absolute;left:0px;top:500px;touch-action: manipulation;" onmousemove="showCoords(event)">
        <input type="file" id="audio-file" accept="audio/*"  style="position:absolute;width:100px;height:100px;left:15px;touch-action: manipulation;">
 	 <input type="file" id="audio-file" accept="audio/*"  style="position:absolute;width:100px;height:100px;left:96px;touch-action: manipulation;">
@@ -17,7 +13,14 @@
 	 <p id="third" style="position:absolute;top:520px;width:25px;height:100px;left:177px;touch-action: manipulation;"></p>
  <p id="fourth" style="position:absolute;top:520px;width:25px;height:100px;left:258px;touch-action: manipulation;"></p>
 	
-	</div>
+	</div>	
+	
+<body>
+    <input type="number" id="bpm" value="140" min="0" max="280" style="z-index:1;position:absolute;width:22px;height:22px;touch-action: manipulation;font-size:10px;">
+ 
+   <button onclick="steep()" style="position:absolute;width:100px;height:100px;left:25px;touch-action: manipulation;">stepedit</button> 
+    <button onclick="keey()" style="z-index:10;position:absolute;width:100px;height:100px;left:125px;touch-action: manipulation;">keyboard</button>
+
 	
 <canvas id="myCanvas"></canvas>
 <canvas id="myCanva""></canvas>
@@ -46,7 +49,7 @@ body, html { width:100%;    touch-action: manipulation; }
 		     
 div {
 
-  width: 2000px;
+  width: 400px;
   height: 100px;
   overflow-x: auto;
 }		     
