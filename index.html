@@ -73,8 +73,6 @@ var gainNode= [];
 		
 
 
- function fuum(){
-  // check for file
   if(fileInput.files[0] == undefined) {
 
     // Stop the process and tell user they need to upload a file.
@@ -91,26 +89,14 @@ var gainNode= [];
 
 		source[0].buffer = buffer;
 		bufferLike.push(buffer);
-	    // Create Compressor Node
-		compressor = audioCtx.createDynamicsCompressor();
-
-		compressor.threshold.setValueAtTime(-20, audioCtx.currentTime);
-		compressor.knee.setValueAtTime(-30, audioCtx.currentTime);
-		compressor.ratio.setValueAtTime(5, audioCtx.currentTime);
-		compressor.attack.setValueAtTime(.05, audioCtx.currentTime);
-		compressor.release.setValueAtTime(.25, audioCtx.currentTime);
-
-		source[0].connect(compressor);
-
-		compressor.connect(audioCtx.destination);
+	 
+		source[0].connect(audioCtx.destination);
 		source[0].start(0);
 
 	    });
 	  };
 	  reader1.readAsArrayBuffer(fileInput.files[0]);
-
-};
-	fuum();							
+						
                                                                 
 function steep() {
 countra++;
