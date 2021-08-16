@@ -73,6 +73,14 @@ var gainNode= [];
 		
 
 
+ function fuum(){
+  // check for file
+  if(fileInput.files[0] == undefined) {
+
+    // Stop the process and tell user they need to upload a file.
+    return false;
+  }
+
   var reader1 = new FileReader();
 	reader1.onload = function(ev) {
 	    
@@ -80,16 +88,29 @@ var gainNode= [];
 	    audioCtx.decodeAudioData(ev.target.result).then(function(buffer) {
 
 	    source[0] = audioCtx.createBufferSource();
-bufferLike.push(buffer);
+
 		source[0].buffer = buffer;
-	
-	    source[0].connect(audioCtx.destination);
+		
+	    // Create Compressor Node
+		compressor = audioCtx.createDynamicsCompressor();
+
+		compressor.threshold.setValueAtTime(-20, audioCtx.currentTime);
+		compressor.knee.setValueAtTime(-30, audioCtx.currentTime);
+		compressor.ratio.setValueAtTime(5, audioCtx.currentTime);
+		compressor.attack.setValueAtTime(.05, audioCtx.currentTime);
+		compressor.release.setValueAtTime(.25, audioCtx.currentTime);
+
+		source[0].connect(compressor);
+
+		compressor.connect(audioCtx.destination);
 		source[0].start(0);
 
-	
+	    });
 	  };
 	  reader1.readAsArrayBuffer(fileInput.files[0]);
-								
+
+};
+	fuum();							
                                                                 
 function steep() {
 countra++;
