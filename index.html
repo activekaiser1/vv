@@ -79,7 +79,7 @@ var audioCtx = new (AudioContext || webkitAudioContext)();
 
 var compress_btn = document.getElementById('compress_btn');
 var bufferLike = [];
-var source = [];
+var soundSource = [];
 var gainNode= [];
 
 function yuluz(amun){
@@ -99,23 +99,13 @@ function yuluz(amun){
 	    // Decode audio
 	    audioCtx.decodeAudioData(ev.target.result).then(function(buffer) {
 
-	    var soundSource = audioCtx.createBufferSource();
+	    soundSource[0] = audioCtx.createBufferSource();
 
-		soundSource.buffer = buffer;
+		soundSource[0].buffer = buffer;
 		
-	    // Create Compressor Node
-		compressor = audioCtx.createDynamicsCompressor();
-
-		compressor.threshold.setValueAtTime(-20, audioCtx.currentTime);
-		compressor.knee.setValueAtTime(-30, audioCtx.currentTime);
-		compressor.ratio.setValueAtTime(5, audioCtx.currentTime);
-		compressor.attack.setValueAtTime(.05, audioCtx.currentTime);
-		compressor.release.setValueAtTime(.25, audioCtx.currentTime);
-
-		soundSource.connect(compressor);
-
-		compressor.connect(audioCtx.destination);
-		soundSource.start(0);
+	 
+		soundSource[0].connect(audioCtx.destination);
+		soundSource[0].start(0);
 soundSource.detune.value = amun;
 	    });
 	  };
@@ -308,83 +298,83 @@ fell.unshift("white"); fell.unshift("white"); fell.unshift("white"); fell.unshif
 	 
 	 if(fell[36+12] == nom){fell[0]=fell[36+12];
 
-if(nom=="red"){soundSource.detune.value = 0;};
-if(nom=="blue"){soundSource.detune.value = 0;};
-if(nom=="green"){soundSource.detune.value = 0;};
-if(nom=="grey"){soundSource.detune.value = 0;};              
+if(nom=="red"){soundSource[0].detune.value = 0;};
+if(nom=="blue"){soundSource[0].detune.value = 0;};
+if(nom=="green"){soundSource[0].detune.value = 0;};
+if(nom=="grey"){soundSource[0].detune.value = 0;};              
 
 
 }; 
 if(fell[37+12] == nom){fell[1]=fell[37+12];
 
-if(nom=="red"){soundSource.detune.value = 100;};
-if(nom=="blue"){soundSource.detune.value = 100;};
-if(nom=="green"){soundSource.detune.value = 100;};
-if(nom=="grey"){soundSource.detune.value = 100;}; 
+if(nom=="red"){soundSource[0].detune.value = 100;};
+if(nom=="blue"){soundSource[0].detune.value = 100;};
+if(nom=="green"){soundSource[0].detune.value = 100;};
+if(nom=="grey"){soundSource[0].detune.value = 100;}; 
 
 }; 
 
 if(fell[38+12] == nom){fell[2]=fell[38+12];
-if(nom=="red"){soundSource.detune.value = 200;};
-if(nom=="blue"){soundSource.detune.value = 200;};
-if(nom=="green"){soundSource.detune.value = 200;};
-if(nom=="grey"){soundSource.detune.value = 200;}; 
+if(nom=="red"){soundSource[0].detune.value = 200;};
+if(nom=="blue"){soundSource[0].detune.value = 200;};
+if(nom=="green"){soundSource[0].detune.value = 200;};
+if(nom=="grey"){soundSource[0].detune.value = 200;}; 
 
 
 }; 
 if(fell[39+12] == nom){fell[3]=fell[39+12];
-if(nom=="red"){soundSource.detune.value = 300;};
-if(nom=="blue"){soundSource.detune.value = 300;};
-if(nom=="green"){soundSource.detune.value = 300;};
-if(nom=="grey"){soundSource.detune.value = 300;}; 
+if(nom=="red"){soundSource[0].detune.value = 300;};
+if(nom=="blue"){soundSource[0].detune.value = 300;};
+if(nom=="green"){soundSource[0].detune.value = 300;};
+if(nom=="grey"){soundSource[0].detune.value = 300;}; 
 }; 
 if(fell[40+12] == nom){fell[4]=fell[40+12];
-if(nom=="red"){soundSource.detune.value = 400;};
-if(nom=="blue"){soundSource.detune.value = 400;};
-if(nom=="green"){soundSource.detune.value = 400;};
-if(nom=="grey"){soundSource.detune.value = 400;}; 
+if(nom=="red"){soundSource[0].detune.value = 400;};
+if(nom=="blue"){soundSource[0].detune.value = 400;};
+if(nom=="green"){soundSource[0].detune.value = 400;};
+if(nom=="grey"){soundSource[0].detune.value = 400;}; 
 }; 
 if(fell[41+12] == nom){fell[5]=fell[41+12];
-if(nom=="red"){soundSource.detune.value = 500;};
-if(nom=="blue"){soundSource.detune.value = 500;};
-if(nom=="green"){soundSource.detune.value = 500;};
-if(nom=="grey"){soundSource.detune.value = 500;}; 
+if(nom=="red"){soundSource[0].detune.value = 500;};
+if(nom=="blue"){soundSource[0].detune.value = 500;};
+if(nom=="green"){soundSource[0].detune.value = 500;};
+if(nom=="grey"){soundSource[0].detune.value = 500;}; 
 };  
 if(fell[42+12] == nom){fell[6]=fell[42+12];
-if(nom=="red"){soundSource.detune.value = 600;};
-if(nom=="blue"){soundSource.detune.value = 600;};
-if(nom=="green"){soundSource.detune.value = 600;};
-if(nom=="grey"){soundSource.detune.value = 600;}; 
+if(nom=="red"){soundSource[0].detune.value = 600;};
+if(nom=="blue"){soundSource[0].detune.value = 600;};
+if(nom=="green"){soundSource[0].detune.value = 600;};
+if(nom=="grey"){soundSource[0].detune.value = 600;}; 
 };  
 if(fell[43+12] == nom){fell[7]=fell[43+12];
-if(nom=="red"){soundSource.detune.value = 700;};
-if(nom=="blue"){soundSource.detune.value = 700;};
-if(nom=="green"){soundSource.detune.value = 700;};
-if(nom=="grey"){soundSource.detune.value = 700;}; 
+if(nom=="red"){soundSource[0].detune.value = 700;};
+if(nom=="blue"){soundSource[0].detune.value = 700;};
+if(nom=="green"){soundSource[0].detune.value = 700;};
+if(nom=="grey"){soundSource[0].detune.value = 700;}; 
 };  
 if(fell[44+12] == nom){fell[8]=fell[44+12];
-if(nom=="red"){soundSource.detune.value = 800;};
-if(nom=="blue"){soundSource.detune.value = 800;};
-if(nom=="green"){soundSource.detune.value = 800;};
-if(nom=="grey"){soundSource.detune.value = 800;}; 
+if(nom=="red"){soundSource[0].detune.value = 800;};
+if(nom=="blue"){soundSource[0].detune.value = 800;};
+if(nom=="green"){soundSource[0].detune.value = 800;};
+if(nom=="grey"){soundSource[0].detune.value = 800;}; 
 };  
 if(fell[45+12] == nom){fell[9]=fell[45+12];
-if(nom=="red"){soundSource.detune.value = 900;};
-if(nom=="blue"){soundSource.detune.value = 900;};
-if(nom=="green"){soundSource.detune.value = 900;};
-if(nom=="grey"){soundSource.detune.value = 900;}; 
+if(nom=="red"){soundSource[0].detune.value = 900;};
+if(nom=="blue"){soundSource[0].detune.value = 900;};
+if(nom=="green"){soundSource[0].detune.value = 900;};
+if(nom=="grey"){soundSource[0].detune.value = 900;}; 
 };  
 if(fell[46+12] == nom){fell[10]=fell[46+12];
-if(nom=="red"){soundSource.detune.value = 1000;};
-if(nom=="blue"){soundSource.detune.value = 1000;};
-if(nom=="green"){soundSource.detune.value = 1000;};
-if(nom=="grey"){soundSource.detune.value = 1000;}; 
+if(nom=="red"){soundSource[0].detune.value = 1000;};
+if(nom=="blue"){soundSource[0].detune.value = 1000;};
+if(nom=="green"){soundSource[0].detune.value = 1000;};
+if(nom=="grey"){soundSource[0].detune.value = 1000;}; 
 };  
 if(fell[47+12] == nom){fell[11]=fell[47+12];
-if(nom=="red"){soundSource.detune.value = 1100;};
-if(nom=="blue"){soundSource.detune.value = 1100;};
-if(nom=="green"){soundSource.detune.value = 1100;};
-if(nom=="grey"){soundSource.detune.value = 1100;}; 
+if(nom=="red"){soundSource[0].detune.value = 1100;};
+if(nom=="blue"){soundSource[0].detune.value = 1100;};
+if(nom=="green"){soundSource[0].detune.value = 1100;};
+if(nom=="grey"){soundSource[0].detune.value = 1100;}; 
 };  
 
 
