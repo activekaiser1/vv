@@ -90,7 +90,7 @@ var gainNode= [];
 	    source[0] = audioCtx.createBufferSource();
 
 		source[0].buffer = buffer;
-		
+		bufferLike.push(buffer);
 	    // Create Compressor Node
 		compressor = audioCtx.createDynamicsCompressor();
 
