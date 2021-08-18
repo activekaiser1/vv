@@ -7,7 +7,7 @@
    <button onclick="steep()" style="position:absolute;width:100px;height:100px;left:25px;touch-action: manipulation;">stepedit</button> 
     <button onclick="keey()" style="z-index:10;position:absolute;width:100px;height:100px;left:125px;touch-action: manipulation;">keyboard</button>
     <button onclick="doouble()" style="position:absolute;width:100px;height:100px;left:225px;touch-action: manipulation;">double</button>
-      <input type="file" id="audio-file" accept="audio/mpeg, audio/ogg, audio/*" style="position:absolute;top:520px;touch-action: manipulation;" />
+      <input type="file" id="audio-file" onchange='openFile(event)' accept="audio/mpeg, audio/ogg, audio/*" style="position:absolute;top:520px;touch-action: manipulation;" />
 
 <canvas id="myCanvas"></canvas>
 <canvas id="myCanva""></canvas>
@@ -49,7 +49,8 @@ var counttra = 0;
 var countttra = 0;
  var yulugy = 0;  
 var pz = -1;
-var xped = 5;                                        
+var xped = 5;   
+					   var lozt = 0;
 var c = document.getElementById("myCanvas");
 var ctx = c.getContext("2d");
 c.width = window.innerWidth;
@@ -95,11 +96,14 @@ function ghul(){
 	  reader1.readAsArrayBuffer(fileInput.files[0]);
 
 };
-								
+
+								var openFile = function(event) {
+								ghul();
+								};
 								
                                                                 
 function steep() {
-								ghul();
+								
 countra++;
 stepedit = 10;
 if(countra==2){stepedit=0;countra=0;};     
@@ -418,13 +422,28 @@ if(nom=="grey"){source[0].detune.value = 1200;};
           
             if(window.innerWidth/2-5-tiltLR*20<0){
               if(window.innerWidth/2-5-tiltFB*20>0){                   
-                   if(window.innerWidth/2-5-tiltFB*20<window.innerWidth){               
-source[0].start(0);  
+                   if(window.innerWidth/2-5-tiltFB*20<window.innerWidth){   
+				if(lozt==0){source[0].start(0);};
+				lozt++;
+				
+
 feel[0]="red";
 nom = feel[0];
  
 //gainNode[0].gain.value = (Math.abs(window.innerWidth/2-5-tiltLR*20))/100;
                         
+};};};
+	     
+	     
+	     ///alta
+	     
+	            if(window.innerWidth/2-5-tiltLR*20>0){
+              if(window.innerWidth/2-5-tiltFB*20<0){                   
+                   if(window.innerWidth/2-5-tiltFB*20>window.innerWidth){   
+				
+				lozt=0;
+				
+               
 };};};
           
             if(window.innerWidth/2-5-tiltFB*20<0){
